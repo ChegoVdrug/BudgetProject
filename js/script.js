@@ -13,7 +13,7 @@ let person = {
 };
 
 console.log(person.name);
-console.log(person["name"]);
+//console.log(person["name"]);
 
 //alert("Hi");
 let answer = prompt("are you OK?", "Yes");

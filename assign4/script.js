@@ -72,12 +72,16 @@ var appData = {
         }
         appData.income.sort();
 
-        let allIncomes = Object.values(appData.income);
-        let incomesToAlert = "Способы доп. заработка: ";
-        allIncomes.forEach((item, index) => {
-            incomesToAlert += ("\n" + (index + 1) + "." + item)
+        appData.income.forEach (function (itemmassive, i) {
+            alert("Способы доп. заработка: " + (i+1) + " - " + itemmassive);
         });
-        alert(incomesToAlert);
+        
+        // let allIncomes = Object.values(appData.income);
+        // let incomesToAlert = "Способы доп. заработка: ";
+        // allIncomes.forEach((item, index) => {
+        //     incomesToAlert += ("\n" + (index + 1) + "." + item)
+        // });
+        // alert(incomesToAlert);
     },
     showAllKeys: function(){
         console.log("Наша программа включает данные:");

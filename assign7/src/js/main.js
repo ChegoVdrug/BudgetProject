@@ -97,7 +97,11 @@ expensesBtn.addEventListener("click", function () {
         let a = expensesItems[i].value,
             b = expensesItems[++i].value;
 
-        if (typeof (a) === 'string' && typeof (a) != null && typeof (b) != null && a != "" && b != "" && a.length < 50) {
+        if (typeof (a) === 'string' &&
+         typeof (a) != null &&
+         typeof (b) != null && 
+         a != "" && 
+         b != "" && a.length < 50) {
             appData.expenses[a] = b;
             sum += +b;
         } else {

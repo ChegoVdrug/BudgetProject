@@ -31,6 +31,10 @@ let appData = {
     savings: false
 };
 
+expensesBtn.disabled = true;
+optionalExpensesBtn.disabled = true;
+countBtn.disabled = true;
+
 startBtn.addEventListener("click", function () {
     expensesBtn.disabled=false;
     optionalExpensesBtn.disabled = false;
@@ -124,7 +128,7 @@ optionalExpensesBtn.addEventListener("click", function () {
 });
 chooseIncome.addEventListener('input', function () {
     let items = chooseIncome.value;
-    appData.income = items.split(", ");
+    appData.income = items.split(",");
     incomeValue.textContent = appData.income;
 });
 function arraySum(array){

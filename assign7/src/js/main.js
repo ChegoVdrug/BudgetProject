@@ -22,7 +22,6 @@ let monthValue = document.getElementsByClassName('month-value')[0];
 let dayValue = document.getElementsByClassName('day-value')[0];
 let optionalInputs = document.querySelectorAll('.optionalexpenses-item');
 let money, time;
-
 let appData = {
     budget: money,
     timeData: time,
@@ -33,6 +32,9 @@ let appData = {
 };
 
 startBtn.addEventListener("click", function () {
+    expensesBtn.disabled=false;
+    optionalExpensesBtn.disabled = false;
+    countBtn.disabled = false;
     money = +prompt("Ваш бюджет на месяц?", "8000");
     time = prompt("Введите дату в формате YYYY-MM-DD", "2015-12-02");
 
@@ -47,9 +49,6 @@ startBtn.addEventListener("click", function () {
     monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
     dayValue.value = new Date(Date.parse(time)).getDate();
 
-    console.log(yearValue.value);
-    console.log(new Date(Date.parse(time)).getFullYear());
-    console.log(yearValue.value);
 });
 
 checksavings.addEventListener("input", function () {
@@ -99,9 +98,8 @@ expensesBtn.addEventListener("click", function () {
             b = expensesItems[++i].value;
 
         if (typeof (a) === 'string' && typeof (a) != null && typeof (b) != null && a != "" && b != "" && a.length < 50) {
-            appData[a] = b;
+            appData.expenses[a] = b;
             sum += +b;
-            console.log(sum);
         } else {
             console.log("bad result");
             i--;
@@ -125,10 +123,19 @@ chooseIncome.addEventListener('input', function () {
     appData.income = items.split(", ");
     incomeValue.textContent = appData.income;
 });
-
+function arraySum(array){
+     var sum = 0; 
+     for(var i = 0; i < array.length; i++){
+         sum += +array[i]; 
+        } 
+        return sum; 
+    } 
 countBtn.addEventListener('click', function () {
     if (appData.budget) {
-        appData.moneyPerDay = (appData.budget / 30).toFixed();
+        let expenses = arraySum(Object.values(appData.expenses));
+        console.log(expenses);
+        console.log(appData.expenses);
+        appData.moneyPerDay = ((appData.budget - expenses) / 30 ).toFixed(2);
         daybudgetValue.textContent = appData.moneyPerDay;
 
         if (appData.moneyPerDay < 100) {
